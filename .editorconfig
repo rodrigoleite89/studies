@@ -1,6 +1,6 @@
 root = true
 
-[.cc, .cpp, .py]
+[.cc, .cpp, .py, java, js, jsx, ts, tsx, html, css]
 indent_style = space
 indent_size = 4
 
