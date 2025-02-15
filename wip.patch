@@ -1,0 +1,528 @@
+diff --git a/modules/math-codes/modules/calculus/README.md b/modules/math-codes/modules/calculus/README.md
+index 7927776..5096483 100644
+--- a/modules/math-codes/modules/calculus/README.md
++++ b/modules/math-codes/modules/calculus/README.md
+@@ -318,3 +318,499 @@ pip install -U -v --require-virtualenv -r requirements.txt
+ ---
+ 
+ **Rodrigo** **L**eite da **S**ilva - **drigols**
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++# Calculus
++
++## Contents
++
++ - [**Rate of Change**](#intro-to-rate-of-change)
++ - [**Limit**](#intro-to-limit)
++ - [**Derivative**](#intro-to-derivative)
++ - [**Integral**](#intro-to-integral)
++ - **Tips & Tricks**
++   - [Interval Notation](#interval-notation)
++ - [**Settings**](#settings)
++ - [**REFERENCES**](#ref)
++<!---
++[WHITESPACE RULES]
++- Same topic = "10" Whitespace character.
++- Different topic = "50" Whitespace character.
++--->
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++<!--- ( Rate of Change ) --->
++
++---
++
++<div id="intro-to-rate-of-change"></div>
++
++## Rate of Change
++
++To understand **"Rate of Change"**, let's start with the "q" function, which returns the number of meters traveled by a cyclist based on the number of seconds the cyclist rode the bike.
++
++**Imagine that the function is this:**
++
++![img](images/intro-to-rate-of-change-01.png)
++
++<details>
++<summary>Python Code</summary>
++
++[meters_travelled_by_cyclist.py](src/meters_travelled_by_cyclist.py)
++```python
++
++```
++
++</details>
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++<!--- ( Limit ) --->
++
++---
++
++<div id="intro-to-limit"></div>
++
++## Limit
++
++Imagine that we have a company that produces parts (peças) *and as it produces, its profit varies (e, à medida que ela produz, seu lucro varia)*.
++
++![img](images/intro-to-limit-01.png)  
++
++See that:
++
++ - **We have a graph:**
++   - Profit as a function of production (Lucro em função da produção).
++ - **The "X" axis:**
++   - Represents the "Production".
++ - **The "Y" axis:**
++   - Represents the "Profit".
++   - **NOTE:** Or *loss (prejuizo)*, because it depends on production.
++
++Now imagine that if we didn't produce anything we would have a 10k loss:
++
++![img](images/intro-to-limit-02.png)  
++
++> **Why 10k loss?**  
++> We need to pay rent (aluguel), water, electricity and we don't produce anything, that is, we have made a *loss*.
++
++Now, imagine that we continue *producing* and *collecting data* and we stop at the following graph:
++
++![img](images/intro-to-limit-03.png)  
++
++See that:
++
++ - **The *first* month we produce 5k:**
++   - *We didn't make a profit.*
++   - **NOTE:** That's because with this production our profit was zero after paying for everything.
++ - **The *second* month we produce 7k:**
++   - *We made 50k profit.*
++ - **The *third* month we produce 12k:**
++   - *We made 100k profit.*
++ - **The *fourth* month we produce 15k:**
++   - *We made 70k profit.*
++ - **The *fifth* month we produce 19k:**
++   - *We made 30k profit.*
++
++**NOTE:**  Now, if we pay attention:
++
++ - **The *second* month we produce 7k:**
++   - *We made 50k profit.*
++ - **The *fifth* month we produce 19k:**
++   - *We made 30k profit.*
++
++> **What?**  
++> How can we produce more than twice as much and make less profit?
++
++Even worse (Pior ainda):
++
++ - **The *third* month we produce 12k:**
++   - *We made 100k profit.*
++ - **The *fifth* month we produce 19k:**
++   - *We made 30k profit.*
++
++> **What the hell is this?**  
++> There must be someone stealing from the company! (Só pode ter alguém roubando na empresa!)
++
++Now imagine that we hired (contratamos) a company to analyze this and they say *we are not being robbed (não estamos sendo roubados)*.
++
++> **What? Like this? (Como assim?)**  
++
++Let's recap everything:
++
++ - **The *first* month we produce 5k:**
++   - *We didn't make a profit.*
++   - **NOTE:** That's because with this production our profit was zero after paying for everything.
++ - **The *second* month we produce 7k:**
++   - *We made 50k profit.*
++ - **The *third* month we produce 12k:**
++   - *We made 100k profit.*
++
++> **So far so good (Ate aqui tudo bem)...**
++
++The problem is that from now on (producing 12k pieces per month) the more your production increases, the more your profit will no longer increase and may even decrease.
++
++> **Why would that be? (Por que será?)**
++
++ - **Machines may be working too hard:**
++   - And this can cause them to break down and this reduces the company's profit because you have to get them fixed.
++ - **Employees may be overworked:**
++   - They may have filed a lawsuit against you that you lost and had to pay.
++   - **NOTE:** This also reduces the company's profits.
++
++> **NOTE:**  
++In other words, in our company's scenario today, with this number of employees and number of machines, there is a **"maximum (limit)"** for profit.
++
++That is, we need to *find* out:
++
++ - The minimum we need to produce.
++   - *Less effort.*
++ - To make the **maximum (limit)** profit possible.
++   - *Biggest gain.*
++
++> In other words, we are interested in the maximum (limit) possible profit with the least *effort (production)*.
++
++Back to our example (graph): We know the *maximum point (limit)* but imagine that we don't know the *maximum point (limit)* of this function.
++
++> **In other words, what is the minimum we need to produce to make the maximum profit possible?**
++
++![img](images/intro-to-limit-04.png)  
++
++To find this value we need the *"derivative"* of our function:
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++<!--- ( Derivative ) --->
++
++---
++
++<div id=""></div>
++
++
++
++
++
++
++
++
++
++
++<!--- ( Integral ) --->
++
++---
++
++<div id=""></div>
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++<!--- ( Tips & Tricks ) --->
++
++---
++
++<div id="interval-notation"></div>
++
++## Interval Notation
++
++ - 🔴 Closed dot (●) → [ ] → Includes the number.
++ - ⚪ Open dot (○) → ( ) → Excludes the number.
++
++
++| Graph   |	Interval Notation | Explanation |
++|----------|-------------------|-------------|
++| 🔴———🔴  |	[a, b]	Closed interval: both endpoints are included.
++| 🔴———⚪ |	[a, b)	Includes a but excludes b.
++| ⚪———🔴 |	(a, b]	Excludes a but includes b.
++| ⚪———⚪ |	(a, b)	Open interval: neither endpoint is included.
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++<!--- ( Settings ) --->
++
++---
++
++<div id="settings"></div>
++
++## Settings
++
++**CREATE VIRTUAL ENVIRONMENT:**  
++```bash
++python -m venv environment
++```
++
++**ACTIVATE THE VIRTUAL ENVIRONMENT (LINUX):**  
++```bash
++source environment/bin/activate
++```
++
++**ACTIVATE THE VIRTUAL ENVIRONMENT (WINDOWS):**  
++```bash
++source environment/Scripts/activate
++```
++
++**UPDATE PIP:**
++```bash
++python -m pip install --upgrade pip
++```
++
++**INSTALL PYTHON DEPENDENCIES:**  
++```bash
++pip install -U -v --require-virtualenv -r requirements.txt
++```
++
++**Now, Be Happy!!!** 😬
++
++
++
++
++
++
++
++<!--- ( REFERENCES ) --->
++
++---
++
++<div id="ref"></div>
++
++## REFERENCES
++
++ - **General:**
++   - [Help Engenharia](https://helpengenharia.com/)
++ - **Limit:**
++ - **Derivative:**
++ - **Integral:**
++
++---
++
++**Rodrigo** **L**eite da **S**ilva - **drigols**
+diff --git a/modules/math-codes/modules/calculus/images/intro-to-limit-01.png b/modules/math-codes/modules/calculus/images/intro-to-limit-01.png
+new file mode 100644
+index 0000000..fd3cc1b
+Binary files /dev/null and b/modules/math-codes/modules/calculus/images/intro-to-limit-01.png differ
+diff --git a/modules/math-codes/modules/calculus/images/intro-to-limit-02.png b/modules/math-codes/modules/calculus/images/intro-to-limit-02.png
+new file mode 100644
+index 0000000..3e491c8
+Binary files /dev/null and b/modules/math-codes/modules/calculus/images/intro-to-limit-02.png differ
+diff --git a/modules/math-codes/modules/calculus/images/intro-to-limit-03.png b/modules/math-codes/modules/calculus/images/intro-to-limit-03.png
+new file mode 100644
+index 0000000..1287460
+Binary files /dev/null and b/modules/math-codes/modules/calculus/images/intro-to-limit-03.png differ
+diff --git a/modules/math-codes/modules/calculus/images/intro-to-limit-04.png b/modules/math-codes/modules/calculus/images/intro-to-limit-04.png
+new file mode 100644
+index 0000000..47fe7bc
+Binary files /dev/null and b/modules/math-codes/modules/calculus/images/intro-to-limit-04.png differ
+diff --git a/modules/math-codes/modules/calculus/images/intro-to-rate-of-change-01.png b/modules/math-codes/modules/calculus/images/intro-to-rate-of-change-01.png
+new file mode 100644
+index 0000000..fc4d6eb
+Binary files /dev/null and b/modules/math-codes/modules/calculus/images/intro-to-rate-of-change-01.png differ
+diff --git a/modules/math-codes/modules/calculus/images/plot-01.png b/modules/math-codes/modules/calculus/images/plot-01.png
+new file mode 100644
+index 0000000..43a3321
+Binary files /dev/null and b/modules/math-codes/modules/calculus/images/plot-01.png differ
